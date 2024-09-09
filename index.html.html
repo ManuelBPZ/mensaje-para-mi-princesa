@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje para mi princesa</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1516911552221-0b4c7f0f6c1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGJlYXR1dHxlbnwwfHx8fDE2OTI0NTI5NzM&ixlib=rb-4.0.3&q=80&w=1080');
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            animation: fadeIn 2s;
+            overflow: hidden; /* Evitar scroll durante la animación */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .intro {
+            font-size: 28px;
+            margin-bottom: 30px;
+            background-color: rgba(255, 105, 180, 0.9);
+            border: 2px solid #ff69b4;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: bounceIn 1s;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .heart {
+            font-size: 100px;
+            color: #ff69b4;
+            animation: bounce 1s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+            animation: slideIn 1s;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgba(255, 182, 193, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculto por defecto */
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background-color: #ff85c0;
+        }
+        .kawaii-face {
+            font-size: 50px;
+            margin-top: 20px;
+        }
+        .special-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 28px;
+            color: #ff3366;
+            animation: pop 0.5s;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .kiss-animation {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: kiss 2s forwards; /* Animación más lenta */
+        }
+        @keyframes kiss {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        .heart-fill {
+            position: absolute;
+            color: #ff3366;
+            font-size: 50px;
+            animation: heartFill 1s forwards;
+        }
+        @keyframes heartFill {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+    <script>
+        function showMainMessage() {
+            document.getElementById('mainMessage').style.display = 'block';
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('buttons').style.display = 'block'; // Mostrar botones
+        }
+        function showMessage() {
+            document.getElementById('specialMessage').style.display = 'block';
+            sendKiss(); // Llamar a la función para enviar un beso
+        }
+        function sendKiss() {
+            const kiss = document.createElement('div');
+            kiss.className = 'kiss-animation';
+            kiss.innerHTML = '💋'; // Boca como representación del beso
+            document.body.appendChild(kiss);
+            setTimeout(() => {
+                kiss.remove();
+            }, 2000); // Eliminar el beso después de 2 segundos
+
+            // Crear corazones que llenan la pantalla
+            for (let i = 0; i < 30; i++) {
+                createHeart();
+            }
+        }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-fill';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw'; // Posición aleatoria en el eje X
+            heart.style.top = Math.random() * 100 + 'vh'; // Posición aleatoria en el eje Y
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 1000); // Eliminar el corazón después de 1 segundo
+        }
+    </script>
+</head>
+<body>
+    <div id="intro" class="intro">
+        <h1>💖 ¡Bienvenida princesa a tu aventura jsjsjs! 💖</h1>
+        <p>¿Estás lista para descubrir los secretos que el destino tiene preparados para ti? 💕</p>
+        <p>Cada aventura es una oportunidad para reír y jugar. ¡Deja que nuestros corazones se unan!</p>
+        <p>¡Prepárate tambien para momentos traviesos! 😉💦</p>
+        <button class="button" onclick="showMainMessage()">Comenzar la aventura</button>
+    </div>
+    <div class="heart">💖</div>
+    <div id="mainMessage" class="message">
+        ¡Hola, mi amor! 🌸<br>
+        Eres la razón de mi sonrisa y el latido de mi corazón. Cada día a tu lado es un regalo. <br>
+        Gracias por ser tú. Te amo más de lo que las palabras pueden expresar. 💞 <br>
+        Este mensajito que te prepare era para recordarte cuanto te amo jsjsjs mi bebe consentida 💞
+    </div>
+    <div id="buttons" style="display: none;"> <!-- Botones ocultos por defecto -->
+        <div class="kawaii-face">😊✨</div>
+        <button class="button" onclick="showMessage()">Haz clic aquí para un mensaje especial</button>
+        <div id="specialMessage" class="special-message">¡Eres mi todo! 🌟 Siempre estaré aquí para ti. 💞 Recuerda que en cada aventura, a veces hay que dejarse llevar... ¡y disfrutar de cada momento 7www7! 💦✨</div>
+        <button class="button" onclick="alert('¡Cuando quieras, nos lanzamos a la aventura para terminar como si estuviéramos en una guerra de globos de agua 7w7! 🎈💦')">¿Quieres divertirte conmigo?</button>
+    </div>
+</body>
+</html>
